@@ -2,14 +2,14 @@
 pipeline {
     agent any
      tools{
-         jdk 'Java17'
+         jdk 'Java 17'
          maven 'Maven'
     }
     stages {
         stage('Checkout Code') {
             steps {
                echo "Pulling from GITHUB repository"
-               git branch: 'main', credentialsId: 'mygithubcred', url: 'https://github.com/chntraining/devopsjan.git'
+               git branch: 'main', credentialsId: 'mygithubcred', url: 'https://github.com/masterdoer/mvnproj.git'
             }
         }
          stage('Test the Project') {
@@ -39,13 +39,11 @@ pipeline {
          stage('Push Docker Image to DockerHub') {
             steps {
                echo "Push Docker Image to DockerHub for mvn project"
-                 withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'DOCKER_PASS')]) {
                          bat '''
-   	        echo %DOCKER_PASS% | docker login -u deepikkaa20 --password-stdin
-                         docker tag mvnproj:1.0 deepikkaa20/mymvnproj:latest
-                         docker push deepikkaa20/mymvnproj:latest
+   	                     docker login -u pratheepp3 -p DockerPass@101
+                         docker tag mvnproj:1.0 pratheepp3/mymvnproj:latest
+                         docker push pratheepp3/mymvnproj:latest
                          '''
-                  }
             }
         }
        
@@ -57,7 +55,7 @@ pipeline {
 	               minikube start
 	               minikube status
 	               
-	               minikube image load deepikkaa20/mymvnproj:latest
+	               minikube image load pratheepp3/mymvnproj:latest
 	               kubectl apply -f deployment.yaml
 	               sleep 20
 	               kubectl get pods
