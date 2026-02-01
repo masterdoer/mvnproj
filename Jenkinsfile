@@ -40,7 +40,7 @@ pipeline {
             steps {
                echo "Push Docker Image to DockerHub for mvn project"
                          bat '''
-   	                     docker login -u pratheepp3 -p DockerPass@101
+   	                     docker login -u pratheepp3 -p DockerPass
                          docker tag mvnproj:1.0 pratheepp3/mymvnproj:latest
                          docker push pratheepp3/mymvnproj:latest
                          '''
