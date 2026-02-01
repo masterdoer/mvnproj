@@ -91,9 +91,9 @@ pipeline {
 				}
 			}
 		}
-        
+	  } 
     }
-	}
+
     post {
         success {
             echo 'I succeeded!'
