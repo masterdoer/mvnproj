@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                echo "Pulling from GITHUB repository"
-               git branch: 'main', credentialsId: 'mygithubcred', url: 'https://github.com/masterdoer/mvnproj.git'
+               git branch: 'main', credentialsId: 'mygitacc', url: 'https://github.com/masterdoer/mvnproj.git'
             }
         }
          stage('Test the Project') {
